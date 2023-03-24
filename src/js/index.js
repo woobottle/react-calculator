@@ -52,14 +52,18 @@ if (typeof window === "object") {
   };
 
   const clickOperationButton = (el) => {
-    if (el.innerText === "=") {
-      calculateExpression();
+    if (expressionComponents.firstOperand === null) {
+      alert("숫자를 먼저 입력한 후 연산자를 입력해주세요.");
     } else {
-      const isCalculated = expressionComponents.result !== null;
-      if (isCalculated) {
-        setExpressionComponents();
+      if (el.innerText === "=") {
+        calculateExpression();
+      } else {
+        const isCalculated = expressionComponents.result !== null;
+        if (isCalculated) {
+          setExpressionComponents();
+        }
+        expressionComponents.operator = el.innerText;
       }
-      expressionComponents.operator = el.innerText;
     }
   };
 
