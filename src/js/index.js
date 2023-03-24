@@ -55,6 +55,7 @@ if (typeof window === "object") {
     const { firstOperand, operator, secondOperand, result } =
       expressionComponents;
 
+    // W.T : validate 처리를 분리했으면 좋겠다.
     if (firstOperand === null) {
       alert("숫자를 먼저 입력한 후 연산자를 입력해주세요.");
     } else {
@@ -91,8 +92,11 @@ if (typeof window === "object") {
     let calculatedData;
     const { firstOperand, operator, secondOperand, result } =
       expressionComponents;
+
+    // W.T : Hook 처리해서 구현하고 싶다. (https://www.rinae.dev/posts/getting-closure-on-react-hooks-summary)
     const isCalculated = result !== null;
 
+    // W.T : 중복된 코드가 넘 많다. 어떻게 줄일 수 있을까.
     switch (operator) {
       case "+":
         calculatedData = (isCalculated ? result : firstOperand) + secondOperand;
