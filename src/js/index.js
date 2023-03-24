@@ -52,13 +52,20 @@ if (typeof window === "object") {
   };
 
   const clickOperationButton = (el) => {
-    if (expressionComponents.firstOperand === null) {
+    const { firstOperand, operator, secondOperand, result } =
+      expressionComponents;
+
+    if (firstOperand === null) {
       alert("숫자를 먼저 입력한 후 연산자를 입력해주세요.");
     } else {
       if (el.innerText === "=") {
-        calculateExpression();
+        if (operator !== null && secondOperand === null) {
+          alert("두 번째 피연산자를 입력해주세요.");
+        } else {
+          calculateExpression();
+        }
       } else {
-        const isCalculated = expressionComponents.result !== null;
+        const isCalculated = result !== null;
         if (isCalculated) {
           setExpressionComponents();
         }
@@ -101,6 +108,8 @@ if (typeof window === "object") {
           (isCalculated ? result : firstOperand) / secondOperand
         );
         break;
+      default:
+        calculatedData = firstOperand;
     }
     expressionComponents.result = calculatedData;
     showTotalScore(calculatedData);
