@@ -93,7 +93,9 @@ if (typeof window === "object") {
         calculatedData = (isCalculated ? result : firstOperand) * secondOperand;
         break;
       case "/":
-        calculatedData = (isCalculated ? result : firstOperand) / secondOperand;
+        calculatedData = Math.trunc(
+          (isCalculated ? result : firstOperand) / secondOperand
+        );
         break;
     }
     expressionComponents.result = calculatedData;
